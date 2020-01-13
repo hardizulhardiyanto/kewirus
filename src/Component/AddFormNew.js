@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import '../Stylesheets/AddForm.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button, Modal, ButtonToolbar } from 'react-bootstrap';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import '../Stylesheets/AddForm.css';
 
 export default class AddFormNew extends Component {
@@ -26,7 +28,7 @@ export default class AddFormNew extends Component {
 
     handleCancleModal = (e) => {
         e.preventDefault()
-        this.setState({ name: '', price: '', descript: '', isValid: true, showAlert: false});
+        this.setState({ name: '', price: '', descript: '', isValid: true, showAlert: false });
         this.props.closeModal();
     }
 
@@ -36,9 +38,8 @@ export default class AddFormNew extends Component {
         if (!name || !price || !descript) this.setState({ isValid: false, showAlert: true });
 
         else {
-            this.setState({ name: '', price: '', descript: '', isValid: true, showAlert: false});
-            console.log('handleSEND', name, price, descript)
-            // this.props.sendTestimonial({ name, price, descript });
+            this.setState({ name: '', price: '', descript: '', isValid: true, showAlert: false });
+            this.props.sendData({ name, price, descript });
             this.props.closeModal();
         }
     };
@@ -59,10 +60,23 @@ export default class AddFormNew extends Component {
                     </div>
                 )}
 
-                <Modal.Header closeButton onClick={this.handleCancleModal}>
+                <Modal.Header>
                     <Modal.Title>
                         Tambah Widget
                 </Modal.Title>
+                    <Button 
+                    style={{
+                        backgroundColor: "transparent",
+                        backgroundRepeat: 'no-repeat',
+                        border: "none",
+                        cursor: "pointer",
+                        overflow: "hidden",
+                        outline: "none"
+                    }}
+                    onClick={this.handleCancleModal} >
+                    <FontAwesomeIcon icon={faTimes} style={{ color:'black' }} />
+                    </Button>
+
                 </Modal.Header>
                 <Modal.Body>
                     <form id="addTestimonial" onSubmit={this.handleSend}>

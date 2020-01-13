@@ -11,23 +11,12 @@ export default class NavbarMenu extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            modalShow: false,
-            setModalShow: false,
             showModal: false
         }
-        this.handleAddShow.bind(this);
-        this.handleAddHide.bind(this);
         this.handleAddData = this.handleAddData.bind(this);
         this.closeModal = this.closeModal.bind(this);
     }
 
-    handleAddShow() {
-        this.setState({ setModalShow: true })
-    }
-
-    handleAddHide() {
-        this.setState({ modalShow: true })
-    }
 
     handleAddData() {
         this.setState({ showModal: true })
