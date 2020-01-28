@@ -19,13 +19,25 @@ export default class AddFormNew extends Component {
 
         }
         this.handleCancleModal = this.handleCancleModal.bind(this)
+        this.handleName = this.handleName.bind(this)
+        this.handlePrice = this.handlePrice.bind(this)
+        this.handleDescript = this.handleDescript.bind(this)
 
     }
 
-    handleInputChange = e => {
-        this.setState({ [e.target.name]: e.target.value });
-    };
+    handleName(event) {
+        this.setState({ name: event.target.value })
+    }
 
+    handlePrice(event) {
+        this.setState({ price: event.target.value })
+    }
+
+    handleDescript(event) {
+        this.setState({ descript: event.target.value })
+    }
+
+    
     handleCancleModal = (e) => {
         e.preventDefault()
         this.setState({ name: '', price: '', descript: '', isValid: true, showAlert: false });
@@ -38,8 +50,8 @@ export default class AddFormNew extends Component {
         if (!name || !price || !descript) this.setState({ isValid: false, showAlert: true });
 
         else {
+            this.props.sendData( this.state.name, this.state.price, this.state.descript);
             this.setState({ name: '', price: '', descript: '', isValid: true, showAlert: false });
-            this.props.sendData({ name, price, descript });
             this.props.closeModal();
         }
     };
@@ -51,8 +63,7 @@ export default class AddFormNew extends Component {
                 show={show}
                 size="lg"
                 aria-labelledby="contained-modal-title-vcenter"
-                centered
-            >
+                centered>
 
                 {this.state.showAlert && (
                     <div className="alert alert-danger" role="alert">
@@ -79,13 +90,14 @@ export default class AddFormNew extends Component {
 
                 </Modal.Header>
                 <Modal.Body>
-                    <form id="addTestimonial" onSubmit={this.handleSend}>
+                    <form id="addData" onSubmit={this.handleSend}>
                         <div className="form-group" >
-                            <input type="text" name="name" className="form-control" placeholder="Name" style={{ backgroundColor: "#f5f7f6" }} value={this.state.name} onChange={this.handleInputChange} />
+                            <input type="text" 
+                            name="name" className="form-control" placeholder="Name" style={{ backgroundColor: "#f5f7f6" }} value={this.state.name} onChange={this.handleName} />
                             <br />
-                            <input type="text" name="price" className="form-control" placeholder="Price" style={{ backgroundColor: "#f5f7f6" }} value={this.state.price} onChange={this.handleInputChange} />
+                            <input type="text" name="price" className="form-control" placeholder="Price" style={{ backgroundColor: "#f5f7f6" }} value={this.state.price} onChange={this.handlePrice} />
                             <br />
-                            <input type="text" name="descript" className="form-control" placeholder="Description" style={{ backgroundColor: "#f5f7f6" }} value={this.state.descript} onChange={this.handleInputChange} />
+                            <input type="text" name="descript" className="form-control" placeholder="Description" style={{ backgroundColor: "#f5f7f6" }} value={this.state.descript} onChange={this.handleDescript} />
                         </div>
                     </form>
                 </Modal.Body>
@@ -101,7 +113,7 @@ export default class AddFormNew extends Component {
                         <div style={{ color: "black" }}>Batal</div>
                     </Button>
 
-                    <Button form="addTestimonial" type="submit" style={{ width: "130px" }} >Tambah</Button>
+                    <Button form="addData" type="submit" style={{ width: "130px" }} >Tambah</Button>
                 </Modal.Footer>
             </Modal >
         )

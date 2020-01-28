@@ -4,7 +4,7 @@ import { Button, Navbar } from 'react-bootstrap';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import '../Stylesheets/NavbarMenu.css';
-import AddFormNew from './AddFormNew';
+import AddFormNew from '../Container/AddFormNew';
 
 export default class NavbarMenu extends React.Component {
 

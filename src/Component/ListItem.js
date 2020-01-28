@@ -4,7 +4,7 @@ import NavbarMenu from './NavbarMenu'
 import { Button, Card } from 'react-bootstrap';
 
 export default class ListItem extends React.Component {
-
+    
     render() {
         return (
             <div>
